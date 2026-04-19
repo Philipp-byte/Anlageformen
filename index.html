@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sparplan-Rechner | FinTech</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">📈 Sparplan-Rechner</div>
+      <button id="themeToggle" class="btn btn-ghost" aria-label="Theme umschalten">🌙 Dark Mode</button>
+    </header>
+
+    <main class="layout">
+      <section class="card form-card">
+        <h1>Vermögensentwicklung berechnen</h1>
+        <p class="subtitle">Didaktisch, realitätsnah und mit Vergleich mehrerer Anlageformen.</p>
+
+        <form id="calculatorForm" class="grid">
+          <label>
+            Monatliche Sparrate (€)
+            <input id="monthlyContribution" type="number" min="0" step="10" value="250" required />
+          </label>
+
+          <label>
+            Einmalige Anfangsinvestition (€)
+            <input id="initialInvestment" type="number" min="0" step="100" value="2000" required />
+          </label>
+
+          <label>
+            Laufzeit (Jahre)
+            <input id="years" type="number" min="1" max="60" step="1" value="20" required />
+          </label>
+
+          <fieldset class="asset-fieldset">
+            <legend>Anlageformen (Mehrfachauswahl)</legend>
+            <label><input type="checkbox" name="asset" value="sparbuch" checked /> 🏦 Sparbuch</label>
+            <label><input type="checkbox" name="asset" value="tagesgeld" checked /> 💶 Tagesgeld</label>
+            <label><input type="checkbox" name="asset" value="termingeld" /> 📅 Termingeld</label>
+            <label><input type="checkbox" name="asset" value="etf" checked /> 🌍 ETF MSCI World</label>
+            <label><input type="checkbox" name="asset" value="crypto" /> 🪙 Kryptowährungen</label>
+          </fieldset>
+
+          <label>
+            Eigene Rendite überschreiben (% p.a., optional)
+            <input id="customReturn" type="number" step="0.1" placeholder="z. B. 5.5" />
+          </label>
+
+          <label>
+            Kosten pro Jahr (% p.a.)
+            <input id="annualCosts" type="number" min="0" step="0.1" value="0.2" />
+          </label>
+
+          <label class="toggle-row">
+            <input id="enableTaxes" type="checkbox" checked />
+            Steuern berücksichtigen (Kapitalertragsteuer 25 %)
+          </label>
+
+          <label class="toggle-row">
+            <input id="enableInflation" type="checkbox" checked />
+            Inflation berücksichtigen
+          </label>
+
+          <label>
+            Inflation (% p.a.)
+            <input id="inflationRate" type="number" min="0" step="0.1" value="2" />
+          </label>
+
+          <div class="button-row">
+            <button type="submit" class="btn">Berechnen</button>
+            <button type="button" id="saveScenario" class="btn btn-ghost">Szenario speichern</button>
+            <button type="button" id="loadScenario" class="btn btn-ghost">Szenario laden</button>
+            <button type="button" id="exportChart" class="btn btn-ghost">Grafik exportieren (PNG)</button>
+          </div>
+        </form>
+
+        <p class="disclaimer">⚠️ Kryptowährungen: Hohe Verluste möglich – starke Schwankungen.</p>
+      </section>
+
+      <section class="card results-card">
+        <h2>Vergleich & Ergebnis</h2>
+        <canvas id="wealthChart" aria-label="Vermögensentwicklung" role="img"></canvas>
+        <div id="assumptions" class="assumptions"></div>
+        <div id="resultsContainer" class="results-grid"></div>
+      </section>
+    </main>
+
+    <section class="card education-card">
+      <h2>Magisches Dreieck der Geldanlage</h2>
+      <p>
+        Gute Geldanlage balanciert drei Ziele: <strong>Sicherheit</strong>, <strong>Rendite</strong> und
+        <strong>Liquidität</strong>. In der Praxis kann man meist nur zwei Ziele gleichzeitig stark erfüllen.
+      </p>
+      <ul>
+        <li><strong>🏦 Sparbuch:</strong> Sehr sicher und einfach verständlich, aber die Rendite ist meist sehr niedrig. Inflation kann die Kaufkraft über die Zeit spürbar senken.</li>
+        <li><strong>💶 Tagesgeld:</strong> Hohe Flexibilität, da das Geld täglich verfügbar bleibt. Zinsen sind oft besser als beim Sparbuch, aber langfristig meist begrenzt.</li>
+        <li><strong>📅 Termingeld:</strong> Fester Zinssatz für eine feste Laufzeit schafft Planungssicherheit. Während der Bindung ist das Geld jedoch kaum verfügbar.</li>
+        <li><strong>🌍 ETF MSCI World:</strong> Breite Streuung über viele Unternehmen reduziert Einzelrisiken. Kurzfristige Schwankungen sind normal, langfristig sind historisch höhere Renditen möglich.</li>
+        <li><strong>🪙 Kryptowährungen:</strong> Sehr hohe Chancen gehen mit sehr hohen Risiken einher. Starke Kurssprünge können in kurzer Zeit zu großen Gewinnen oder Verlusten führen.</li>
+      </ul>
+    </section>
+  </body>
+</html>
