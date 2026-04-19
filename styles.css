@@ -1,0 +1,218 @@
+:root {
+  --bg: #0b1020;
+  --panel: #111a30;
+  --panel-alt: #1a2745;
+  --text: #e9f0ff;
+  --muted: #9fb0d0;
+  --accent: #00c389;
+  --accent-2: #f59e0b;
+  --border: rgba(255, 255, 255, 0.1);
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+body.light {
+  --bg: #f4f7fb;
+  --panel: #ffffff;
+  --panel-alt: #eef3fb;
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #00a86f;
+  --accent-2: #d97706;
+  --border: rgba(15, 23, 42, 0.12);
+  --shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(180deg, var(--bg), #0f1a34 80%);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.light {
+  background: linear-gradient(180deg, var(--bg), #e9eff8 80%);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in oklab, var(--bg), transparent 35%);
+  z-index: 9;
+}
+
+.brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.layout {
+  width: min(1200px, 96%);
+  margin: 1rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 1rem;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 1.1rem;
+  animation: fadeIn 0.45s ease;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+.subtitle,
+.assumptions,
+.disclaimer {
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+label,
+legend {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+input {
+  margin-top: 0.35rem;
+  width: 100%;
+  background: var(--panel-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.62rem;
+}
+
+.asset-fieldset {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.65rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.asset-fieldset label,
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.asset-fieldset input,
+.toggle-row input {
+  width: auto;
+  margin-top: 0;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.2rem;
+}
+
+.btn {
+  background: var(--accent);
+  color: #072316;
+  border: none;
+  border-radius: 12px;
+  padding: 0.62rem 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+#wealthChart {
+  width: 100%;
+  max-height: 390px;
+  margin-bottom: 0.7rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.7rem;
+}
+
+.result-card {
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  padding: 0.7rem;
+  background: color-mix(in oklab, var(--panel-alt), transparent 8%);
+}
+
+.result-card h3 {
+  margin: 0 0 0.4rem;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.25rem 0;
+  font-size: 0.92rem;
+}
+
+.education-card {
+  width: min(1200px, 96%);
+  margin: 0 auto 1.2rem;
+}
+
+.education-card ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 920px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
